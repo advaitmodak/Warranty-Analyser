@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify
+ffrom flask import Flask, request, jsonify
 import pandas as pd
 from datetime import datetime
+import os  # Needed for Render port binding
 
 app = Flask(__name__)
 
@@ -32,4 +33,6 @@ def submit_complaint():
     return jsonify({"message": "Complaint submitted successfully."})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Bind to 0.0.0.0 and use PORT from environment (needed by Render)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

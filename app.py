@@ -1,4 +1,4 @@
-ffrom flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 import pandas as pd
 from datetime import datetime
 import os  # Needed for Render port binding

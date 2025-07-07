@@ -1,13 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app)
 import pandas as pd
 from datetime import datetime
-import os  # Needed for Render port binding
+import os
 
 app = Flask(__name__)
+CORS(app)  # Enables CORS for all routes
 
 # Load or create the Excel file
 excel_file = "customer_complaints.xlsx"
@@ -37,6 +35,5 @@ def submit_complaint():
     return jsonify({"message": "Complaint submitted successfully."})
 
 if __name__ == "__main__":
-    # Bind to 0.0.0.0 and use PORT from environment (needed by Render)
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
